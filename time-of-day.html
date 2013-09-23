@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;">
+
+	<title>Adaptive UIs</title>
+<link rel="stylesheet" type="text/css" href="time-of-day.css"  />	
+<script src="adaptiveUI.js"></script>
+<script src="time-of-day.js"></script>
+
+<script>
+
+window.addEventListener("load", initialize, false)
+//add an event listener for the window load event, which installs the adaptiveUI
+
+
+function initialize(){
+	//initialize the adaptiveUI
+	
+	adaptiveUI.start(handleStateChange)
+}
+
+function handleStateChange(){
+	//this is an example handler for state changes.
+	//you can write your own and add it as the callback like below  
+	
+	if (adaptiveUI.isShaking >= 0.5) {
+		var newClass = "shaken";
+		var oldClass = "regular"
+	}
+
+	else {
+		var newClass = "regular";
+		var oldClass = "shaken"
+	}
+
+	if (document.body.classList) {
+		document.body.classList.add(newClass)
+		document.body.classList.remove(oldClass)
+	}
+	//we change the class name of the containing body, and so our shaken styles apply
+}
+
+adaptiveUI.changeCallback = handleStateChange;
+</script>
+
+</head>
+<body class="shaken">
+<form>
+	<button id="one">1</button>
+	<button id="two">2</button>
+	<button id="three">3</button>
+	
+	<button id="four">4</button>
+	<button id="five">5</button>
+	<button id="six">6</button>
+	
+	<button id="seven">7</button>
+	<button id="eight">8</button>
+	<button id="nine">9</button>
+	
+	<button id="options">*</button>
+	<button id="zero">0</button>
+	<button id="delete">&lt;</button>
+	<button id="call">call</button>
+	<output id="phone-number"></output>
+
+</form>
+</body>
+</html>
